@@ -12,7 +12,7 @@ export const handler: Handler = async (
   const val = _.random(max);
   const response = {
     statusCode: 200,
-    body: JSON.stringify(`number: ${val}`),
+    body: JSON.stringify(`numbertje: ${val}`),
   };
   return response;
 };
