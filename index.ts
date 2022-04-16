@@ -33,9 +33,6 @@ export const handler: Handler = async (
     if (err) throw err;
     response.body = rows;
   });
-  connect.query("SELECT 1", function (error, results, fields) {
-    if (error) throw error;
-  });
 
   return response;
 };
