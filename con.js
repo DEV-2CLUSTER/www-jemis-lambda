@@ -1,4 +1,4 @@
-import * as mysql from "mysql";
+const mysql = require("mysql");
 
 const host = "dftudbstrevdtgf.cps2q1ntjqzp.eu-west-3.rds.amazonaws.com";
 const user = "admin";

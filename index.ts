@@ -25,13 +25,21 @@ const con = mysql.createConnection({
 export const handler: Handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResultV2> => {
-  const response = {
+  let response = {
     statusCode: 200,
     body: JSON.stringify("error"),
   };
-  con.query("SELECT * FROM vals", (err, rows) => {
-    if (err) throw err;
-    response.body = rows;
+  con.connect((err) => {
+    if (err) {
+      console.log("Error connecting to Db");
+      return;
+    }
+    con.query("SELECT * FROM vals", (err, rows) => {
+      if (err) throw err;
+
+      console.log("Data received from Db:");
+      console.log(rows);
+    });
   });
 
   return response;
