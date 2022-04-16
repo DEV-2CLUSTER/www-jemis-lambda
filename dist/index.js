@@ -17333,7 +17333,7 @@ const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
     const val = lodash__WEBPACK_IMPORTED_MODULE_0__.random(max);
     const response = {
         statusCode: 200,
-        body: JSON.stringify(`number: ${val}`),
+        body: JSON.stringify(`numbertje: ${val}`),
     };
     return response;
 });
