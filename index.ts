@@ -4,7 +4,7 @@ import {
   APIGatewayProxyResultV2,
   Handler,
 } from "aws-lambda";
-import * as mysql from "mysql";
+const mysql = require("mysql");
 import * as _ from "lodash";
 
 AWS.config.update({ region: "eu-west-3" });
@@ -14,7 +14,7 @@ const user = "admin";
 const password = "jnP03N1NTgpr";
 const database = "jemis";
 
-const connect = mysql.createConnection({
+const con = mysql.createConnection({
   ssl: { rejectUnauthorized: false },
   host,
   user,
@@ -29,9 +29,12 @@ export const handler: Handler = async (
     statusCode: 200,
     body: JSON.stringify("error"),
   };
+  con.query("SELECT * FROM vals", (err, rows) => {
+    if (err) throw err;
+    response.body = rows;
+  });
   connect.query("SELECT 1", function (error, results, fields) {
     if (error) throw error;
-    response.body = results;
   });
 
   return response;
